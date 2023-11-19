@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Head, Link } from '@inertiajs/vue3';
-import Card from '@/components/Card.vue';
+
 import HomeNavbar from '@/Partials/HomeNavbar.vue';
 import HomeSidebar from '@/Partials/HomeSidebar.vue';
 defineProps<{
@@ -10,6 +10,7 @@ defineProps<{
   phpVersion: string;
 }>();
 </script>
+
 <template>
   <div>
     <Head title="medical serv" />
@@ -20,17 +21,11 @@ defineProps<{
       <div class="w-full md:w-64 bg-sidebar p-6 rounded-r-lg">
         <div class="mb-8 text-center"></div>
 
-        <!-- Enlaces de la barra lateral aqui veremos que mas le anexamos -->
+        <!-- Enlaces de la barra lateral aquí -->
         <div>
           <h1 class="text-2xl font-bold mb-4">MediConnect</h1>
 
-          <Link
-            v-if="$page.props.auth.user"
-            :href="route('dashboard')"
-            class="block py-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
-          >Dashboard</Link>
-
-          <template v-else>
+          <template v-if="!$page.props.auth.user">
             <Link
               :href="route('login')"
               class="block py-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:text-white hover:bg-indigo-500 rounded text-white transition-all duration-300"
@@ -42,10 +37,16 @@ defineProps<{
               class="block py-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:text-white hover:bg-indigo-500 rounded text-white transition-all duration-300"
             >Registrarse</Link>
           </template>
+
+          <Link
+            v-if="$page.props.auth.user"
+            :href="route('dashboard')"
+            class="block py-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
+          >Dashboard</Link>
         </div>
       </div>
 
-      <!-- Contenido principal aqui puedes agregar todo lo que que quieras caleth hasta donde termine el div que esta abajo de este coemntario-->
+      <!-- Contenido principal aquí -->
       <div class="flex-1 p-6">
         <div class="flex items-center justify-center flex-col mb-8">
           <div class="max-w-full md:max-w-2xl w-full">
@@ -57,33 +58,12 @@ defineProps<{
 
         <!-- Tarjetas informativas -->
         <div class="flex flex-wrap justify-center">
-          <Card
-            title="Médicos Generales"
-            content="Los médicos generales son entrenados para diagnosticar una amplia variedad de enfermedades y afecciones médicas."
-          />
-          <Card
-            title="Dentistas"
-            content="Son profesionales de la salud especializados en el diagnóstico, tratamiento y prevención de enfermedades y condiciones relacionadas con la cavidad oral y la maxilofacial."
-          />
-          <Card
-            title="Psicólogos"
-            content="Los psicólogos son profesionales de la salud mental que se especializan en comprender el comportamiento humano, los procesos mentales y las emociones."
-          />
-          <Card
-            title="Nutriólogos"
-            content="Los nutriólogos, también conocidos como dietistas o nutricionistas, son profesionales de la salud especializados en la alimentación, la nutrición y el asesoramiento dietético."
-          />
-          <Card
-            title="Quiroprácticos"
-            content="Los quiroprácticos son profesionales de la salud que se especializan en el tratamiento de trastornos del sistema musculoesquelético y del sistema nervioso, con un enfoque particular en la columna vertebral."
-          />
+          <!-- ... -->
         </div>
       </div>
     </div>
   </div>
 </template>
-
-
 
 <style>
 .bg-gray-100 {
