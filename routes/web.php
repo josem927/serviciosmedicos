@@ -35,4 +35,25 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/medicogeneral', function () {
+    return Inertia::render('medicogeneral');
+})->name('medicogeneral');
+
+Route::get('/Dentistas', function () {
+    return Inertia::render('Dentistas');
+})->name('Dentistas');
+
+Route::get('/Nutriologos', function () {
+    return Inertia::render('Nutriologos');
+})->name('nutriologos');
+
+Route::get('/Psicologos', function () {
+    return Inertia::render('Psicologos');
+})->name('Psicologos');
+
+Route::get('/Quiropracticos', function () {
+    return Inertia::render('Quiropracticos');
+})->name('Quiropracticos');
+
+
 require __DIR__.'/auth.php';
