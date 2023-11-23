@@ -25,7 +25,8 @@ const submit = () => {
 
 <template>
     <GuestLayout>
-        <Head title="Registro" />
+        <Head title="Registro tu consultorio"/>
+        <div class="background-image"></div>
 
         <form @submit.prevent="submit">
             <div>
@@ -120,3 +121,4 @@ const submit = () => {
         </form>
     </GuestLayout>
 </template>
+

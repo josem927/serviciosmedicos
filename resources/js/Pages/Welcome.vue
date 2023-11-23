@@ -1,77 +1,78 @@
 <template>
   <div>
-    <Head title="medical serv" />
-
-    <!-- Navbar -->
-    <nav class="bg-gray-800 p-6 text-white fixed top-0 left-0 right-0 z-10">
+    <Head title="MediConnect: Tu Salud en Linea" />
+    <div class="w-full md:w-64 bg-sidebar p-6 fixed top-[-145px] left-0 z-10 flex flex-col justify-center">
+      <div class="mb-8 text-center relative">
+        <img class="w-34 h-auto -mt-48" src="images/mediconectB.png" alt="MediConnect Image">
+        <p class="text-white text-xl mt-3">¡Bienvenido a MediConnect!</p> <br>
+        <h1 class="text-white">¿Qué buscaba?</h1>
+        <a href="/medicogeneral" class="btn hover:bg-blue-500">
+          <i class="fas fa-user-md"></i> Médicos generales
+        </a>
+        <a href="/Dentistas" class="btn hover:bg-blue-500">
+          <i class="fas fa-tooth"></i> Dentistas
+        </a>
+        <a href="/Nutriologos" class="btn hover:bg-blue-500">
+          <i class="fas fa-carrot"></i> Nutriólogos
+        </a>
+        <a href="/Psicologos" class="btn hover:bg-blue-500">
+          <i class="fas fa-brain"></i> Psicólogos
+        </a>
+        <a href="/Quiropracticos" class="btn hover:bg-blue-500">
+          <i class="fas fa-bone"></i> Quiroprácticos
+        </a>
+      </div>
+    </div>
+    <nav class="bg-gray-800 p-6 text-white ml-48"> 
       <div class="container mx-auto flex justify-between items-center w-full">
-    
-
         <div class="flex items-center">
           <Link
-            v-if="$page.props.auth.user"
-            :href="route('navbar')"
-            class="ml-4 hover:text-gray-300"
+          v-if="$page.props.auth.user"
+          :href="route('navbar')"
+          class="ml-4 hover:text-gray-300"
           >Dashboard</Link>
         </div>
-        <div>
+        <div class="flex items-center ml-4">
+          <div class="relative text-gray-600 focus-within:text-gray-400 rounded-md">
+        <span class="absolute inset-y-0 left-0 flex items-center pl-2">
+                <button type="submit" class="p-1 focus:outline-none focus:shadow-outline">
+                  <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-6 h-6">
+                      <circle cx="11" cy="11" r="8" />
+                    <path d="M21 21l-4.35-4.35" />
+                  </svg>
+                </button>
+          </span>
+        <input type="search" name="q" class="py-2 pl-10 pr-4 text-white bg-white focus:outline-none focus:bg-white focus:text-gray-900 rounded-md w-96" placeholder="Buscar..." autocomplete="off">
+      </div>
           <template v-if="!$page.props.auth.user">
-            <div class="flex">
+            <div class="flex mx-2">
               <Link
-                :href="route('login')"
-                class="inline-block py-2 px-4 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:text-white rounded text-white transition-all duration-300 hover-rectangle mb-2 text-center cursor-pointer"
+              :href="route('login')"
+              class="btn hover:bg-blue-500"
               >Iniciar sesión</Link>
-
               <Link
-                v-if="canRegister"
-                :href="route('register')"
-                class="inline-block py-2 px-4 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:text-white rounded text-white transition-all duration-300 hover-rectangle mb-2 text-center cursor-pointer ml-2"
+              v-if="canRegister"
+              :href="route('register')"
+              class="btn hover:bg-blue-500"
               >Registra tu consultorio</Link>
             </div>
           </template>
         </div>
       </div>
     </nav>
-
-    
-    <div class="flex flex-col md:flex-row h-screen bg-gray-100 dark:bg-gray-900">
-      <!-- aqui puedes agregar caleth mas cosas dentro del sidebar -->
-      <div class="w-full md:w-64 bg-sidebar p-6 fixed top-[-145px]  left-0 z-10 flex flex-col justify-center">
-        <div class="mb-8 text-center">
-         
-          <img class="w-34 h-auto ml-4 " src="images/mediconectB.png " alt="MediConnect Image" />
-          <p class="text-white text-xl  mt-3">¡Bienvenido a MediConnect!</p> <br>
-          <h1 class="text-white">¿Que buscaba?</h1>
-          <a href="/medicogeneral" class="btn">Médicos Generales</a>
-          <a href="/Dentistas" class="btn">Dentistas</a>
-          <a href="/Nutriologos" class="btn">Nutriologos</a>
-          <a href="/Psicologos" class="btn">Psicologos</a>
-          <a href="/Quiropracticos" class="btn">Quiropracticos</a>
-        </div>
-        <div>
-          <Link
-            v-if="$page.props.auth.user"
-            :href="route('dashboard')"
-            class="block py-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
-          >Dashboard</Link>
+    <div class="flex-1 p-6 ml-64 mt-16">
+      <div class="flex items-center justify-center flex-col mb-8">
+        <div class="max-w-full md:max-w-2xl w-full">
+          <img src="/images/informativo.jpg" class="max-w-full mx-auto mb-4" />
+          <h1 class="text-4xl font-bold text-center mb-4">Salud digital en tu región</h1>
+          <p class="text-center">QUE OFRECEMOS</p>
         </div>
       </div>
-
-      <!-- Contenido principal -->
-      <div class="flex-1 p-6 ml-64 mt-16">
-        <div class="flex items-center justify-center flex-col mb-8">
-          <div class="max-w-full md:max-w-2xl w-full">
-            <img src="/images/informativo.jpg" class="max-w-full mx-auto mb-4" />
-            <h1 class="text-4xl font-bold text-center mb-4">Salud digital en tu región</h1>
-            <p class="text-center">QUE OFRECEMOS</p>
-          </div>
-        </div>
-
+      <div class="flex flex-wrap justify-center">
         <div class="flex flex-wrap justify-center">
-          <div class="flex flex-wrap justify-center">
-            <Card
-              title="Médicos Generales"
-              content="Los médicos generales son entrenados para diagnosticar una amplia variedad de enfermedades y afecciones médicas."
+          <Card
+            title="Médicos Generales"
+            content="Los médicos generales son entrenados para diagnosticar una amplia variedad de enfermedades y afecciones médicas."
             />
             <Card
               title="Dentistas"
@@ -96,7 +97,6 @@
       
       
     </div>
-  </div>
 </template>
 
 <script setup lang="ts">
@@ -108,7 +108,10 @@ defineProps<{
   laravelVersion: string;
   phpVersion: string;
 }>();
+const commonLinkClass =
+  'inline-block py-2 px-4 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:text-white rounded text-white transition-all duration-300 hover:bg-blue-500 mb-2 text-center cursor-pointer';
 </script>
+
 
 <style scoped>
 .bg-gray-100 {
@@ -163,4 +166,8 @@ defineProps<{
 .btn-fixed:hover {
   background-color: #fd9f87;
 }
+.hover\:rectangle:hover {
+    border: 2px solid #4299e1;
+    background-color: #4299e1;
+    }
 </style>
