@@ -33,14 +33,20 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
+            'phone' => 'required|string|max:255', // Nuevo campo: Teléfono
             'email' => 'required|string|email|max:255|unique:'.User::class,
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'professional_id' => 'required|string|max:255', // Nuevo campo: Cédula Profesional
+            'userType' => 'required|string|max:255', // Nuevo campo: Tipo de Usuario
         ]);
 
         $user = User::create([
             'name' => $request->name,
+            'phone' => $request->phone, // Nuevo campo: Teléfono
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'professional_id' => $request->professional_id, // Nuevo campo: Cédula Profesional
+            'userType' => $request->userType, // Nuevo campo: Tipo de Usuario
         ]);
 
         event(new Registered($user));

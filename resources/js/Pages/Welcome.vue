@@ -3,7 +3,8 @@
     <Head title="MediConnect: Tu Salud en Linea" />
     <div class="w-full md:w-64 bg-sidebar p-6 fixed top-[-145px] left-0 z-10 flex flex-col justify-center">
       <div class="mb-8 text-center relative">
-        <img class="w-34 h-auto -mt-48" src="images/mediconectB.png" alt="MediConnect Image">
+        <img class="w-40 h-auto mx-auto" src="images/OIG.png" alt="MediConnect Image" style="margin-top: -100px; display: block;">
+
         <p class="text-white text-xl mt-3">¡Bienvenido a MediConnect!</p> <br>
         <h1 class="text-white">¿Qué buscaba?</h1>
         <a href="/medicogeneral" class="btn hover:bg-blue-500">
@@ -32,20 +33,23 @@
           class="ml-4 hover:text-gray-300"
           >Dashboard</Link>
         </div>
-        <div class="flex items-center ml-4">
+        <div class="flex items-center ml-4 ">
           <div class="relative text-gray-600 focus-within:text-gray-400 rounded-md">
-        <span class="absolute inset-y-0 left-0 flex items-center pl-2">
-                <button type="submit" class="p-1 focus:outline-none focus:shadow-outline">
-                  <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-6 h-6">
-                      <circle cx="11" cy="11" r="8" />
-                    <path d="M21 21l-4.35-4.35" />
-                  </svg>
-                </button>
-          </span>
-        <input type="search" name="q" class="py-2 pl-10 pr-4 text-white bg-white focus:outline-none focus:bg-white focus:text-gray-900 rounded-md w-96" placeholder="Buscar..." autocomplete="off">
-      </div>
+    <span class="absolute inset-y-0 left-0 flex items-center pl-2">
+        <button type="submit" class="p-1 focus:outline-none focus:shadow-outline mr-4">
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-6 h-6">
+                <circle cx="11" cy="11" r="8" />
+                <path d="M21 21l-4.35-4.35" />
+            </svg>
+        </button>
+    </span>
+    <input type="search" name="q" class="py-2 pl-16 pr-4 text-white bg-white focus:outline-none focus:bg-white focus:text-gray-900 rounded-full w-96 ml-[-10px]" placeholder="Buscar..." autocomplete="off">
+</div>
+
+
+
           <template v-if="!$page.props.auth.user">
-            <div class="flex mx-2">
+            <div class="flex mx-2 space-x-4">
               <Link
               :href="route('login')"
               class="btn hover:bg-blue-500"
@@ -59,16 +63,19 @@
           </template>
         </div>
       </div>
+
+      
     </nav>
     <div class="flex-1 p-6 ml-64 mt-16">
       <div class="flex items-center justify-center flex-col mb-8">
         <div class="max-w-full md:max-w-2xl w-full">
           <img src="/images/informativo.jpg" class="max-w-full mx-auto mb-4" />
           <h1 class="text-4xl font-bold text-center mb-4">Salud digital en tu región</h1>
-          <p class="text-center">QUE OFRECEMOS</p>
+          <p class="text-center font-bold">QUE OFRECEMOS</p>
+
         </div>
       </div>
-      <div class="flex flex-wrap justify-center">
+      
         <div class="flex flex-wrap justify-center">
           <Card
             title="Médicos Generales"
@@ -96,12 +103,12 @@
 
       
       
-    </div>
+ 
 </template>
 
 <script setup lang="ts">
 import { Head, Link } from '@inertiajs/vue3';
-import Card from '@/components/Card.vue'; 
+import Card from '@/components/card.vue'; 
 defineProps<{
   canLogin?: boolean;
   canRegister?: boolean;
