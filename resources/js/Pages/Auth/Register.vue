@@ -20,7 +20,8 @@ const form = useForm({
 const submit = () => {
     form.post(route('register'), {
         onFinish: () => {
-            form.reset('password', 'password_confirmation');
+        alert("No estas registrado")
+            /* form.reset('password', 'password_confirmation'); */
         },
     });
 };
@@ -178,7 +179,7 @@ const submit = () => {
             ¿Ya estás registrado?
           </Link>
   
-          <PrimaryButton class="ml-4 bg-red-500 text-white" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+          <PrimaryButton @click="submit" class="ml-4 bg-red-500 text-white" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
             Registrarse
           </PrimaryButton>
         </div>
