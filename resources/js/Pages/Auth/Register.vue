@@ -14,6 +14,9 @@ const form = useForm({
     password_confirmation: '',
     professional_id:'',
     userType: '',
+    ubicacion: '', // Nuevo campo
+    name_doctor: '', // Nuevo campo
+    
     
 });
 
@@ -21,7 +24,7 @@ const submit = () => {
     form.post(route('register'), {
         onFinish: () => {
         alert("No estas registrado")
-            /* form.reset('password', 'password_confirmation'); */
+            
         },
     });
 };
@@ -52,6 +55,35 @@ const submit = () => {
   
             <InputError class="mt-2 ml-2" :message="form.errors.name" />
           </div>
+        </div>
+       
+        <div class="w-full md:w-1/2 px-3 mt-4 flex flex-col">
+            <InputLabel for="name_doctor" value="Nombre del Doctor" />
+            <div class="flex">
+                <TextInput
+                    id="name_doctor"
+                    type="text"
+                    class="mt-1 block w-full"
+                    v-model="form.name_doctor"
+                    required
+                    autofocus
+                />
+                <InputError class="mt-2 ml-2" :message="form.errors.name_doctor" />
+            </div>
+        </div>
+        <div class="w-full md:w-1/2 px-3 mt-4 flex flex-col">
+            <InputLabel for="ubicacion" value="Ubicación" />
+            <div class="flex">
+                <TextInput
+                    id="ubicacion"
+                    type="text"
+                    class="mt-1 block w-full"
+                    v-model="form.ubicacion"
+                    required
+                    autofocus
+                />
+                <InputError class="mt-2 ml-2" :message="form.errors.ubicacion" />
+            </div>
         </div>
   
         <!-- Tipo de Usuario -->

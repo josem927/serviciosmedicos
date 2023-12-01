@@ -4,7 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-
+use App\Models\User;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,24 +37,64 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/medicogeneral', function () {
-    return Inertia::render('medicogeneral');
+    try {
+        $medicogral = User::where('userType', 'medicogral')->get();
+        return Inertia::render('Medicosgenerales', [
+            'medicogral' => $medicogral->toArray(),
+        ]);
+    } catch (\Exception $e) {
+        dd($e->getMessage());
+    }
 })->name('medicogeneral');
 
 Route::get('/Dentistas', function () {
-    return Inertia::render('Dentistas');
+    try {
+        $Dentistas = User::where('userType', 'Dentistas')->get();
+        return Inertia::render('Dentistas', [
+            'Dentistas' => $Dentistas->toArray(),
+        ]);
+    } catch (\Exception $e) {
+        dd($e->getMessage());
+    }
 })->name('Dentistas');
 
 Route::get('/Nutriologos', function () {
-    return Inertia::render('Nutriologos');
-})->name('nutriologos');
+    try {
+        $Nutriologos = User::where('userType', 'Nutriologos')->get();
+        return Inertia::render('Nutriologos', [
+            'Nutriologos' => $Nutriologos->toArray(),
+        ]);
+    } catch (\Exception $e) {
+        dd($e->getMessage());
+    }
+})->name('Nutriologos');
 
 Route::get('/Psicologos', function () {
-    return Inertia::render('Psicologos');
+    try {
+        $Psicologos = User::where('userType', 'Psicologos')->get();
+        return Inertia::render('Psicologos', [
+            'Psicologos' => $Psicologos->toArray(),
+        ]);
+    } catch (\Exception $e) {
+        dd($e->getMessage());
+    }
 })->name('Psicologos');
 
 Route::get('/Quiropracticos', function () {
-    return Inertia::render('Quiropracticos');
+    try {
+        $Quiropracticos = User::where('userType', 'Quiropracticos')->get();
+        return Inertia::render('Quiropracticos', [
+            'Quiropracticos' => $Quiropracticos->toArray(),
+        ]);
+    } catch (\Exception $e) {
+        dd($e->getMessage());
+    }
 })->name('Quiropracticos');
+
+
+
+
+
 
 
 require __DIR__.'/auth.php';

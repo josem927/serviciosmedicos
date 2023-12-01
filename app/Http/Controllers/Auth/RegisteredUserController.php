@@ -33,21 +33,33 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'phone' => 'required|string|max:255', // Nuevo campo: Teléfono
-            'email' => 'required|string|email|max:255|unique:'.User::class,
+            'phone' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'professional_id' => 'required|string|max:255', // Nuevo campo: Cédula Profesional
-            'userType' => 'required|string|max:255', // Nuevo campo: Tipo de Usuario
+            'professional_id' => 'required|string|max:255',
+            'userType' => 'required|string|max:255',
+            'ubicacion' => 'nullable|string|max:255',
+            'name_doctor' => 'nullable|string|max:255',
+            'foto_consultorio' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Nueva validación para la foto de perfil
         ]);
 
         $user = User::create([
             'name' => $request->name,
-            'phone' => $request->phone, // Nuevo campo: Teléfono
+            'phone' => $request->phone,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'professional_id' => $request->professional_id, // Nuevo campo: Cédula Profesional
-            'userType' => $request->userType, // Nuevo campo: Tipo de Usuario
+            'professional_id' => $request->professional_id,
+            'userType' => $request->userType,
+            'ubicacion' => $request->ubicacion,
+            'name_doctor' => $request->name_doctor,
         ]);
+
+        // Manejar la foto de perfil
+        if ($request->hasFile('foto_consultorio')) {
+            $imagePath = $request->file('foto_consultorio')->store('profile_images', 'public');
+            $user->profile_image = $imagePath;
+            $user->save();
+        }
 
         event(new Registered($user));
 
