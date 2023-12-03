@@ -1,5 +1,8 @@
-
 <template>
+  <Head title="Dentistas" />
+   <div class="background-image">
+    <img src="/images/dentista.jpg" class="max-w-full h-full object-cover" />
+  </div>
     <div class="flex flex-col items-center">
       <div v-if="dentistaData.length > 0" class="mt-8">
         <div v-for="dentista in Dentistas" :key="dentista.id" class="card" style="width: 8cm; height: 15cm; margin-top: 16px;">
@@ -12,49 +15,112 @@
                 <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
                   <h1>Tipo de dentista</h1>{{ dentista.userType }}
                 </div>
-                <h2 class="block mt-2 text-lg leading-tight font-medium text-black">
-                  <nombre-del-consultorio></nombre-del-consultorio> <h1>Nombre del consultorio</h1>{{ dentista.name }}
+                <h2 class="block mt-2 text-lg leading-tight font-medium text-white">
+                  <h1>Nombre del consultorio: {{ dentista.name }}</h1>
                 </h2>
-                <p class="mt-2 text-gray-500"> <h1>Correo</h1>{{ dentista.email }}</p>
-                <p class="mt-2 text-gray-500"><h1>Cedula Profesional</h1>{{ dentista.professional_id }}</p>
-                <p class="mt-2 text-gray-500"><h1>Nombre del dentista</h1>{{ dentista.name_doctor }}</p>
-              </div>
-              <div class="flex flex-col">
-                <p class="mt-2 text-gray-500"><h1>Teléfono</h1><a :href="'tel://' + dentista.phone">{{ dentista.phone }}</a></p>
-                <p class="mt-2 text-gray-500"><h1>Ubicación</h1>{{ dentista.ubicacion }}</p>
+                <p class="mt-2 text-gray-500 text-white"><h1>Correo: </h1>{{ dentista.email }}</p>
+                <p class="mt-2 text-gray-500 text-white"><h1>Cédula Profesional: </h1>{{ dentista.professional_id }}</p>
+                <p class="mt-2 text-gray-500 text-white"><h1>Nombre del doctor: </h1>{{ dentista.name_doctor }}</p>
+                <p class="mt-2 text-gray-500 text-white"><h1>Teléfono: </h1><a :href="'whatsapp://' + dentista.phone">{{ dentista.phone }}</a></p>
+                <p class="mt-2 text-gray-500 text-white"><h1>Ubicación: </h1>{{ dentista.ubicacion }}</p>
               </div>
             </div>
           </div>
           <hr class="border-t-2 border-gray-300 my-6">
         </div>
       </div>
-      <p v-else>No hay datos de dentistas.</p>
+      <p class="mt-2 text-gray-500 text-white" v-else>No hay datos de dentistas.</p>
     </div>
   </template>
   
-  <script setup>
-  import { defineProps } from 'vue';
-  
-  const props = defineProps(['Dentistas']);
-  
-  if (!props.Dentistas || props.Dentistas.length === 0) {
-    console.warn('No hay datos de dentistas.');
-  }
-  
-  const dentistaData = props.Dentistas;
-  </script>
-  
-  <style>
-  .card {
-    width: 8cm;
-    height: 15cm;
-    border: 1px solid black;
-    margin-top: 50px; /* Ajustar según sea necesario */
-    background-color: white;
-    border-radius: 0.5rem;
-    overflow: hidden;
-    box-sizing: border-box;
-    border-radius: 20px;
-  }
-  </style>
-  
+<script setup lang="ts">
+import { Head, Link } from '@inertiajs/vue3';
+import { defineProps } from 'vue';
+
+const props = defineProps(['Dentistas']);
+
+if (!props.Dentistas || props.Dentistas.length === 0) {
+  console.warn('No hay datos de dentistas.');
+}
+
+const dentistaData = props.Dentistas;
+</script>
+
+<style>
+.background-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.background-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  height: 100vh;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100%;
+}
+
+.card {
+  flex: 0 0 calc(33.333% - 20px); /* 3 en 3 con márgenes */
+  width: 15cm;
+  height: 15cm;
+  margin: 10px;
+  background: rgba(128, 128, 128, 0.5);
+  border-radius: 20px;
+  overflow: hidden;
+  box-sizing: border-box;
+  position: relative;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05); /* Escala al hacer hover para efecto 3D */
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5), 0 0 40px rgba(255, 255, 255, 0.3); /* Sombra al hacer hover */
+}
+
+.card:nth-child(3n) {
+  margin-right: 0;
+}
+
+.container .card:nth-child(3n) {
+  margin-right: 0;
+}
+
+/* Efecto de borde neon */
+.card::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 22px;
+  background: linear-gradient(45deg);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+</style>

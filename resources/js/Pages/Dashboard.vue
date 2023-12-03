@@ -38,6 +38,10 @@ const handleSelectChange = (event: Event) => {
   const selectElement = event.target as HTMLSelectElement;
   showPlaceholder.value = !selectElement.value;
 };
+
+const submit = () => {
+  console.log('Botón clicado');
+};
 </script>
 
 <template>
@@ -106,7 +110,7 @@ const handleSelectChange = (event: Event) => {
             </form>
 
             <div class="flex items-center justify-center">
-              <button type="submit" class="btn mb-3 bg-black text-white rounded-full py-2 px-4 hover:bg-black-600 focus:outline-none focus:shadow-outline-black active:bg-black-800">
+              <button @click="submit" class="btn mb-3 bg-black text-white rounded-full py-2 px-4 hover:bg-black-600 focus:outline-none focus:shadow-outline-black active:bg-black-800">
                 Guardar información
               </button>
             </div>
