@@ -52,6 +52,7 @@ const medicoData = props.medicogral;
 .text-super-black {
   color: #000; 
 }
+
 .background-image {
   position: fixed;
   top: 0;
@@ -68,24 +69,8 @@ const medicoData = props.medicogral;
   object-fit: cover;
 }
 
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0;
-  height: 100vh;
-}
-
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-start;
-  height: 100%;
-}
-
 .card {
-  flex: 0 0 calc(33.333% - 20px); /* 3 en 3 con márgenes */
+  flex: 0 0 calc(33.333% - 20px);
   width: 15cm;
   height: 15cm;
   margin: 10px;
@@ -94,23 +79,18 @@ body {
   overflow: hidden;
   box-sizing: border-box;
   position: relative;
-  transition: transform 0.3s, box-shadow  0.s;
+  transition: transform 0.3s, box-shadow 0s;
 }
 
 .card:hover {
-  transform: scale(1.05); /* Escala al hacer hover para efecto 3D */
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5), 0 0 40px rgba(255, 255, 255, 0.3); /* Sombra al hacer hover */
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5), 0 0 40px rgba(255, 255, 255, 0.3);
 }
 
-.card:nth-child(3n) {
-  margin-right: 0;
+.card:not(:last-child) {
+  margin-right: 10px;
 }
 
-.container .card:nth-child(3n) {
-  margin-right: 0;
-}
-
-/* Efecto de borde neon */
 .card::before {
   content: '';
   position: absolute;

@@ -15,20 +15,15 @@ const form = useForm({
     professional_id:'',
     userType: '',
     ubicacion: '', // Nuevo campo
-    name_doctor: '', // Nuevo campo
-    
-    
+    name_doctor: '', // Nuevo campo 
 });
 
 const submit = () => {
     form.post(route('register'), {
         onFinish: () => {
-        alert("No estas registrado")
-            
         },
     });
 };
-
 
 </script>
 
