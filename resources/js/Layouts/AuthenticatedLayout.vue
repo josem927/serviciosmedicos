@@ -13,19 +13,18 @@ const showingNavigationDropdown = ref(false);
 <template>
     <div>
         <div class="min-h-screen bg-gray-100">
-            <nav class="bg-teal-100 border-b border-gray-100">
+            <nav class="bg-teal-100 border-b border-gray-100 h-28">
                 <!-- Primary Navigation Menu -->
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="flex justify-between h-16">
+                    <div class="flex justify-between h-24">
                         <div class="flex">
                             
                             
                             <!-- Navigation Links -->
-                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <img src="images/OIG.png" alt="Icono Panel de Control" class="w-8 h-8 mr-2">
+                            <div class="hidden space-x-6 sm:-my-10-px- sm:ml sm:flex">
+                                <img src="images/OIG.png" alt="Icono Panel de Control" class="mb-8" style="width: 130px; height: 130px;">
 
-                                <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                                 
+                                <NavLink :href="route('dashboard')" :active="route().current('dashboard')" class="text-xl mt-14">
                                     Panel de control
                                 </NavLink>
                             </div>
@@ -39,7 +38,7 @@ const showingNavigationDropdown = ref(false);
                                         <span class="inline-flex rounded-md">
                                             <button
                                                 type="button"
-                                                class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
+                                                class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration- mt-10"
                                             >
                                                 {{ $page.props.auth.user.name }}
 

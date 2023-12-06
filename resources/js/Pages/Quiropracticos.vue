@@ -16,8 +16,8 @@
               <div class="md:flex-shrink-0"></div>
               <div class="p-8 flex flex-col justify-between w-full h-full">
                 <div class="flex flex-col mt-32">
-                  <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
-                    <h1>Tipo de quiropráctico</h1>{{ quiropractico.userType }}
+                  <div class="uppercase tracking-wide text-sm text-white font-semibold text-center">
+                    <h1>Tipo: </h1>{{ quiropractico.userType }}
                   </div>
                   <h2 class="block mt-2 text-lg leading-tight font-medium text-white">
                     <h1>Nombre del consultorio: {{ quiropractico.name }}</h1>
@@ -80,6 +80,7 @@ restoreTextColors();
 </script>
 
 <style>
+
 .background-image {
   position: fixed;
   top: 0;
@@ -96,20 +97,12 @@ restoreTextColors();
   object-fit: cover;
 }
 
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-start;
-  height: 100%;
-}
-
 .card {
   flex: 0 0 calc(33.333% - 20px);
   width: 15cm;
   height: 17.5cm;
   margin: 10px;
-  background: rgba(128, 128, 128, 0.5);
+  background: rgba(39, 37, 37, 0.486); /* Color de fondo */
   border-radius: 20px;
   overflow: hidden;
   box-sizing: border-box;
@@ -119,26 +112,25 @@ restoreTextColors();
 
 .card:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5), 0 0 40px rgba(255, 255, 255, 0.3);
+  box-shadow: 10px 10px 20px #c2c2c2, -10px -10px 20px #ffffff; /* Sombras para el efecto neumórfico */
+}
+.card:hover .text-black {
+  color: black; /* Color del texto cuando se pasa el cursor */
 }
 
-.card:nth-child(3n) {
-  margin-right: 0;
-}
-
-.container .card:nth-child(3n) {
-  margin-right: 0;
+.card:hover .text-white {
+  color: white; /* Color del texto cuando se pasa el cursor */
 }
 
 .card::before {
   content: '';
   position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  border-radius: 22px;
-  background: linear-gradient(45deg);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 20px;
+  background: linear-gradient(45deg, #20b2d6, #ffffff); /* Degradado de fondo */
   z-index: -1;
   opacity: 0;
   transition: opacity 0.3s;
@@ -146,5 +138,9 @@ restoreTextColors();
 
 .card:hover::before {
   opacity: 1;
+}
+
+.card:not(:last-child) {
+  margin-right: 10px;
 }
 </style>

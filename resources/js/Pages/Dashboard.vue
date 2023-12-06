@@ -1,6 +1,52 @@
+<template>
+  <Head title="Dashboard" />
+  <AuthenticatedLayout>
+    <div class="py-8 px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-center items-center">
+        <div class="card mt-4 border border-black rounded-lg overflow-hidden mx-auto max-w-screen-md">
+          <div class="card-body flex flex-col justify-between h-full">
+            <form @submit.prevent="submit" enctype="multipart/form-data" >
+              @csrf
+              <div class="mb-5 relative text-center">
+                <label for="profile_images" class="form-label text-center font-bold text-lg">Consultorio</label>
+                <div class="skeleton" :class="{ 'with-image': !showPlaceholder }">
+                  <div class="loading-circle"></div>
+                  <input
+                    type="file"
+                    id="profile_images"
+                    class="form-control rounded-full opacity-0 absolute inset-0 cursor-pointer"
+                    name="profile_images"
+                    accept="image/*"
+                    required
+                    @change="handleImageChange"
+                  />
+                  <div v-if="!showPlaceholder && imageSrc" class="relative mt-1 flex items-center justify-center h-44">
+                    <img
+                      :src="imageSrc"
+                      alt="Foto de perfil"
+                      class="rounded max-w-full h-full object-cover cursor-pointer"
+                      @click="openFileInput"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="flex items-center justify-center">
+                <button type="submit" class="btn mb-3 bg-black text-white rounded-full py-2 px-4 hover:bg-black-600 focus:outline-none focus:shadow-outline-black active:bg-black-800 mt-8">
+                  Guardar información
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </AuthenticatedLayout>
+</template>
+
 <script setup lang="ts">
+import axios from 'axios';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head } from '@inertiajs/vue3';
+import { Head } from '@inertiajs/inertia-vue3';
 import { onMounted, ref } from 'vue';
 
 onMounted(() => {
@@ -12,6 +58,8 @@ onMounted(() => {
     }
   }, 100);
 });
+
+import { Inertia } from '@inertiajs/inertia';
 
 const showPlaceholder = ref(true);
 const imageSrc = ref('');
@@ -30,96 +78,24 @@ const handleImageChange = (event: Event) => {
 };
 
 const openFileInput = () => {
-  const fileInput = document.getElementById('foto_consultorio') as HTMLInputElement;
+  const fileInput = document.getElementById('profile_images') as HTMLInputElement;
   fileInput.click();
 };
 
-const handleSelectChange = (event: Event) => {
-  const selectElement = event.target as HTMLSelectElement;
-  showPlaceholder.value = !selectElement.value;
-};
+const submit = async () => {
+  try {
+    const formElement = document.querySelector('form') as HTMLFormElement;
+    const formData = new FormData(formElement);
 
-const submit = () => {
-  console.log('Botón clicado');
+
+    await Inertia.post('/guardar-informacion', formData);
+    console.log('Información guardada exitosamente');
+    
+  } catch (error) {
+    console.error('Error al guardar la información', error);
+  }
 };
 </script>
-
-<template>
-  <Head title="Dashboard" />
-  <AuthenticatedLayout>
-    <div class="py-8 px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-center items-center h-screen">
-        <div class="card mt-4 border border-black rounded-lg overflow-hidden mx-auto max-w-screen-md">
-          <div class="card-body flex flex-col justify-between h-full">
-            <form action="{{ route('guardar-informacion') }}" method="post">
-              <div class="mb-5 relative text-center">
-                <label for="foto_consultorio" class="form-label text-center font-bold text-lg">Consultorio</label>
-                <div class="skeleton" :class="{ 'with-image': !showPlaceholder }">
-                  <div class="loading-circle"></div>
-                  <input
-                    type="file"
-                    id="foto_consultorio"
-                    class="form-control rounded-full opacity-0 absolute inset-0 cursor-pointer"
-                    name="foto_consultorio"
-                    accept="image/*"
-                    required
-                    @change="handleImageChange"
-                  />
-                  <div v-if="!showPlaceholder && imageSrc" class="relative mt-1 flex items-center justify-center h-44">
-                    <img
-                      :src="imageSrc"
-                      alt="Foto de perfil"
-                      class="rounded max-w-full h-full object-cover cursor-pointer"
-                      @click="openFileInput"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div class="mb-3 flex flex-col items-center">
-                <label for="nombre" class="form-label">Nombre del Doctor:</label>
-                <input type="text" class="form-control rounded-full w-80" name="nombre" required @input="(event) => (showPlaceholder = (event.target as HTMLInputElement).value === '')">
-              </div>
-
-              <div class="mb-3 flex flex-col items-center">
-                <label for="cedula_profesional" class="form-label">Cédula Profesional:</label>
-                <input type="text" class="form-control rounded-full w-80" name="cedula_profesional" required @input="(event) => (showPlaceholder = (event.target as HTMLInputElement).value === '')">
-              </div>
-
-              <div class="mb-3 flex flex-col items-center">
-                <label for="horarios" class="form-label">Horarios de Atención:</label>
-                <input type="text" id="horarios" name="horarios" class="form-control rounded-full" placeholder="Ej. De Lun-Viern De 8:am a 7:pm" required>
-              </div>
-
-              <div class="mb-3 flex flex-col items-center">
-                <label for="direccion" class="form-label">Dirección:</label>
-                <input type="text" class="form-control rounded-full w-80" name="direccion" required @input="(event) => (showPlaceholder = (event.target as HTMLInputElement).value === '')">
-              </div>
-
-              <div class="mb-3 flex flex-col items-center">
-                <label for="tipo_consultorio" class="form-label">Tipo de Consultorio:</label>
-                <select class="form-select rounded-full" name="tipo_consultorio" required @input="handleSelectChange">
-                  <option value="medicogeneral">Médico General</option>
-                  <option value="Dentistas">Dentista</option>
-                  <option value="Nutriologos">Nutriólogo</option>
-                  <option value="Psicologos">Psicólogo</option>
-                  <option value="Quiropracticos">Quiropráctico</option>
-                </select>
-              </div>
-
-            </form>
-
-            <div class="flex items-center justify-center">
-              <button @click="submit" class="btn mb-3 bg-black text-white rounded-full py-2 px-4 hover:bg-black-600 focus:outline-none focus:shadow-outline-black active:bg-black-800">
-                Guardar información
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </AuthenticatedLayout>
-</template>
 
 <style>
 body {
@@ -129,6 +105,7 @@ body {
   background-repeat: no-repeat; 
   border-radius: 20px;
   height: 820px;
+  overflow-y: hidden;
 }
 
 .overlay-message {
@@ -192,7 +169,7 @@ body {
   transition: opacity 0.3s, transform 0.3s;
   box-shadow: 0 8px 12px rgba(5, 12, 11, 0.2);
   width: 500px;
-  height: 700px;
+  height: 400px;
 }
 
 .card:hover {
@@ -208,15 +185,12 @@ body {
     font-weight: bold;
     margin-bottom: 4px;
     text-align: left; 
-    
-    
   }
-  .form-control {
+.form-control {
     width: 260px; 
     font-size: 14px; 
     max-width: 260px; 
     margin-bottom: 5px; 
     padding: 8px; 
-   
   }
 </style>

@@ -16,7 +16,7 @@
               <div class="md:flex-shrink-0"></div>
               <div class="p-8 flex flex-col justify-between items-center w-full h-full">
                 <div class="flex flex-col mt-48">
-                  <div class="uppercase tracking-wide text-sm text-black font-semibold text-center">
+                  <div class="uppercase tracking-wide text-sm text-white font-semibold text-center">
                     <h1>Tipo: {{ medico.userType }}</h1>
                   </div>
                   
