@@ -5,6 +5,7 @@
       <img src="/images/dentista.jpg" class="max-w-full h-full object-cover" />
     </div>
     <div class="flex flex-col items-center">
+<<<<<<< HEAD
       <div class="container">
         <div v-if="dentistaData.length > 0" class="mt-8 flex flex-wrap -mx-2">
           <div v-for="dentista in dentistaData" :key="dentista.id" 
@@ -28,6 +29,18 @@
                   <p class="mt-2 text-white"><h1>Nombre del doctor: </h1>{{ dentista.name_doctor }}</p>
                   <p class="mt-2 text-white"><h1>Teléfono: </h1><a :href="'whatsapp://' + dentista.phone">{{ dentista.phone }}</a></p>
                   <p class="mt-2 text-white"><h1>Ubicación: </h1>{{ dentista.ubicacion }}</p>
+=======
+      <div v-if="dentistaData.length > 0" class="mt-8">
+        <div v-for="dentista in Dentistas" :key="dentista.id" class="card" style="width: 8cm; height: 15cm; margin-top: 16px;">
+          <div class="md:flex h-full"> 
+            <div class="md:flex-shrink-0">
+              
+            </div>
+            <div class="p-8 flex flex-col justify-between w-full h-full">
+              <div class="flex flex-col mt-32">
+                <div class="uppercase tracking-wide text-sm text-black font-semibold">
+                  <h1>Tipo de dentista</h1>{{ dentista.userType }}
+>>>>>>> de4d524e8dcb0d985a274b0dd097a92e5c79d609
                 </div>
               </div>
             </div>

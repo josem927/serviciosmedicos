@@ -6,21 +6,35 @@
     </div>
     <div class="flex flex-col items-center">
       <div class="container">
+<<<<<<< HEAD
         <div v-if="medicoData.length > 0" class="mt-8 flex flex-wrap -mx-2">
           <div v-for="medico in medicogral" :key="medico.id" 
             class="card mx-4 mb-4" 
             :class="'card-' + medico.id"
             @mouseover="changeTextColor(medico.id, true)" 
             @mouseout="changeTextColor(medico.id, false)">
+=======
+        <div v-if="medicoData.length > 0" class="mt-7 flex flex-wrap -mx-4">
+          <div v-for="medico in medicogral" :key="medico.id" class="card mx-4 mb-4">
+>>>>>>> de4d524e8dcb0d985a274b0dd097a92e5c79d609
             <div class="md:flex h-full">
               <div class="md:flex-shrink-0"></div>
               <div class="p-8 flex flex-col justify-between items-center w-full h-full">
+<<<<<<< HEAD
                 <div class="flex flex-col mt-48">
                   <div class="uppercase tracking-wide text-sm text-white font-semibold text-center">
                     <h1>Tipo: {{ medico.userType }}</h1>
                   </div>
                   
                   <h2 class="block mt-4 text-lg leading-tight font-medium text-white">
+=======
+                <div class="flex flex-col mt-40">
+                  <div class="uppercase tracking-wide text-lg text-black font-semibold">
+                    <h1>Tipo : {{ medico.userType }}</h1>
+                  </div>
+                  
+                  <h2 class="block mt-2 text-lg leading-tight font-medium text-white">
+>>>>>>> de4d524e8dcb0d985a274b0dd097a92e5c79d609
                     <h1>Nombre del consultorio: {{ medico.name }}</h1>
                   </h2>
                   <p class="mt-2 text-white"><h1>Correo: </h1>{{ medico.email }}</p>
@@ -102,7 +116,11 @@ restoreTextColors();
   width: 15cm;
   height: 17.5cm;
   margin: 10px;
+<<<<<<< HEAD
   background: rgba(39, 37, 37, 0.486); /* Color de fondo */
+=======
+  background: rgba(10, 17, 17, 0.5);
+>>>>>>> de4d524e8dcb0d985a274b0dd097a92e5c79d609
   border-radius: 20px;
   overflow: hidden;
   box-sizing: border-box;
@@ -112,10 +130,18 @@ restoreTextColors();
 
 .card:hover {
   transform: scale(1.05);
+<<<<<<< HEAD
   box-shadow: 10px 10px 20px #c2c2c2, -10px -10px 20px #ffffff; /* Sombras para el efecto neumórfico */
 }
 .card:hover .text-black {
   color: black; /* Color del texto cuando se pasa el cursor */
+=======
+<<<<<<< HEAD
+  box-shadow: 0 0 20px rgba(44, 40, 40, 0.5), 0 0 40px rgba(255, 255, 255, 0.3);
+=======
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5), 0 0 40px rgba(255, 255, 255, 0.3);
+>>>>>>> 7cab6912f181afb063651faf4266f02e82f9f94a
+>>>>>>> de4d524e8dcb0d985a274b0dd097a92e5c79d609
 }
 
 .card:hover .text-white {
@@ -139,8 +165,12 @@ restoreTextColors();
 .card:hover::before {
   opacity: 1;
 }
+<<<<<<< HEAD
 
 .card:not(:last-child) {
   margin-right: 10px;
 }
 </style>
+=======
+</style>
+>>>>>>> de4d524e8dcb0d985a274b0dd097a92e5c79d609

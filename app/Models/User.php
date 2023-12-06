@@ -24,9 +24,9 @@ class User extends Authenticatable
         'phone',
         'professional_id',
         'userType',
-        'ubicacion', // Nuevo campo
-        'name_doctor', // Nuevo campo
-        
+        'ubicacion', 
+        'name_doctor', 
+        'profile_image',
         
       
     ];

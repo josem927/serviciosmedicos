@@ -2,7 +2,11 @@
   <Head title="Dashboard" />
   <AuthenticatedLayout>
     <div class="py-8 px-4 sm:px-6 lg:px-8">
+<<<<<<< HEAD
       <div class="flex justify-center items-center">
+=======
+      <div class="flex justify-center items-center h-screen">
+>>>>>>> de4d524e8dcb0d985a274b0dd097a92e5c79d609
         <div class="card mt-4 border border-black rounded-lg overflow-hidden mx-auto max-w-screen-md">
           <div class="card-body flex flex-col justify-between h-full">
             <form @submit.prevent="submit" enctype="multipart/form-data" >
@@ -31,7 +35,11 @@
                 </div>
               </div>
               <div class="flex items-center justify-center">
+<<<<<<< HEAD
                 <button type="submit" class="btn mb-3 bg-black text-white rounded-full py-2 px-4 hover:bg-black-600 focus:outline-none focus:shadow-outline-black active:bg-black-800 mt-8">
+=======
+                <button type="submit" class="btn mb-3 bg-black text-white rounded-full py-2 px-4 hover:bg-black-600 focus:outline-none focus:shadow-outline-black active:bg-black-800">
+>>>>>>> de4d524e8dcb0d985a274b0dd097a92e5c79d609
                   Guardar información
                 </button>
               </div>
