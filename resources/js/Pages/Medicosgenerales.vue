@@ -84,7 +84,11 @@ const medicoData = props.medicogral;
 
 .card:hover {
   transform: scale(1.05);
+<<<<<<< HEAD
   box-shadow: 0 0 20px rgba(44, 40, 40, 0.5), 0 0 40px rgba(255, 255, 255, 0.3);
+=======
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5), 0 0 40px rgba(255, 255, 255, 0.3);
+>>>>>>> 7cab6912f181afb063651faf4266f02e82f9f94a
 }
 
 .card:not(:last-child) {
