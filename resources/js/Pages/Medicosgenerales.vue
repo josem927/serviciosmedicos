@@ -5,25 +5,25 @@
   </div>
     <div class="flex flex-col items-center">
       <div class="container">
-        <div v-if="medicoData.length > 0" class="mt-8 flex flex-wrap -mx-4">
+        <div v-if="medicoData.length > 0" class="mt-7 flex flex-wrap -mx-4">
           <div v-for="medico in medicogral" :key="medico.id" class="card mx-4 mb-4">
             <div class="md:flex h-full">
               <div class="md:flex-shrink-0">
               </div>
               <div class="p-8 flex flex-col justify-between items-center w-full h-full">
-                <div class="flex flex-col mt-60">
-                  <div class="uppercase tracking-wide text-sm text-black font-semibold">
-                    <h1>Tipo de médico: {{ medico.userType }}</h1>
+                <div class="flex flex-col mt-40">
+                  <div class="uppercase tracking-wide text-lg text-black font-semibold">
+                    <h1>Tipo : {{ medico.userType }}</h1>
                   </div>
                   
-                  <h2 class="block mt-2 text-lg leading-tight font-medium text-black">
+                  <h2 class="block mt-2 text-lg leading-tight font-medium text-white">
                     <h1>Nombre del consultorio: {{ medico.name }}</h1>
                   </h2>
-                  <p class="mt-2 text-black"><h1>Correo: </h1>{{ medico.email }}</p>
-                  <p class="mt-2 text-black"><h1>Cédula Profesional: </h1>{{ medico.professional_id }}</p>
-                  <p class="mt-2 text-black"><h1>Nombre del doctor: </h1>{{ medico.name_doctor }}</p>
-                  <p class="mt-2 text-black"><h1>Teléfono: </h1><a :href="'whatsapp://' + medico.phone">{{ medico.phone }}</a></p>
-                  <p class="mt-2 text-black"><h1>Ubicación: </h1>{{ medico.ubicacion }}</p>
+                  <p class="mt-2 text-white"><h1>Correo: </h1>{{ medico.email }}</p>
+                  <p class="mt-2 text-white"><h1>Cédula Profesional: </h1>{{ medico.professional_id }}</p>
+                  <p class="mt-2 text-white"><h1>Nombre del doctor: </h1>{{ medico.name_doctor }}</p>
+                  <p class="mt-2 text-white"><h1>Teléfono: </h1><a :href="'whatsapp://' + medico.phone">{{ medico.phone }}</a></p>
+                  <p class="mt-2 text-white"><h1>Ubicación: </h1>{{ medico.ubicacion }}</p>
                 </div>
               </div>
             </div>
@@ -52,6 +52,7 @@ const medicoData = props.medicogral;
 .text-super-black {
   color: #000; 
 }
+
 .background-image {
   position: fixed;
   top: 0;
@@ -68,49 +69,28 @@ const medicoData = props.medicogral;
   object-fit: cover;
 }
 
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0;
-  height: 100vh;
-}
-
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-start;
-  height: 100%;
-}
-
 .card {
-  flex: 0 0 calc(33.333% - 20px); /* 3 en 3 con márgenes */
+  flex: 0 0 calc(33.333% - 20px);
   width: 15cm;
   height: 15cm;
   margin: 10px;
-  background: rgba(128, 128, 128, 0.5);
+  background: rgba(10, 17, 17, 0.5);
   border-radius: 20px;
   overflow: hidden;
   box-sizing: border-box;
   position: relative;
-  transition: transform 0.3s, box-shadow  0.s;
+  transition: transform 0.3s, box-shadow 0s;
 }
 
 .card:hover {
-  transform: scale(1.05); /* Escala al hacer hover para efecto 3D */
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5), 0 0 40px rgba(255, 255, 255, 0.3); /* Sombra al hacer hover */
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(44, 40, 40, 0.5), 0 0 40px rgba(255, 255, 255, 0.3);
 }
 
-.card:nth-child(3n) {
-  margin-right: 0;
+.card:not(:last-child) {
+  margin-right: 10px;
 }
 
-.container .card:nth-child(3n) {
-  margin-right: 0;
-}
-
-/* Efecto de borde neon */
 .card::before {
   content: '';
   position: absolute;

@@ -91,6 +91,10 @@ Route::get('/Quiropracticos', function () {
     }
 })->name('Quiropracticos');
 
+use App\Http\Controllers\Auth\RegisteredUserController;
+
+Route::post('/guardar-informacion', [RegisteredUserController::class, 'store'])->name('guardar-informacion');
+
 
 
 

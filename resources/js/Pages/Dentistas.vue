@@ -12,7 +12,7 @@
             </div>
             <div class="p-8 flex flex-col justify-between w-full h-full">
               <div class="flex flex-col mt-32">
-                <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
+                <div class="uppercase tracking-wide text-sm text-black font-semibold">
                   <h1>Tipo de dentista</h1>{{ dentista.userType }}
                 </div>
                 <h2 class="block mt-2 text-lg leading-tight font-medium text-white">
